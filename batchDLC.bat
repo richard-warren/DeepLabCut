@@ -29,7 +29,7 @@ for %%s in (%sessions%) do (
 	:: analyze with DeepLabCut
 	echo analyzing with DeepLabCut
 	cd Evaluation-Tools
-	python -W ignore %evalDirDLC%AnalyzeVideos.py
+	python %evalDirDLC%AnalyzeVideos.py
 	
 	:: move results back to session directory and delete concatenated video
 	move /y Videos\trackedFeaturesRaw.csv "%sessionFolder%%%s\trackedFeaturesRaw.csv"

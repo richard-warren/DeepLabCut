@@ -35,7 +35,7 @@ portion = 1
 # Step 2:
 ########################################
 
-bodyparts = ['paw1', 'paw2', 'paw3', 'paw4', 'gen', 'tailBase', 'tailMid', 'paw1LH', 'paw2LF', 'paw3RF', 'paw4RH', 'tailBaseTop', 'tailMidTop']  # Exact sequence of labels as were put by
+bodyparts = ['paw1', 'paw2', 'paw3', 'paw4', 'gen', 'tailBase', 'tailMid', 'paw1LH', 'paw2LF', 'paw3RF', 'paw4RH', 'tailBaseTop', 'tailMidTop']
 
 # annotator in *.csv file
 Scorers = ['']  # who is labeling?
