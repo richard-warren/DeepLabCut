@@ -35,11 +35,10 @@ portion = 1
 # Step 2:
 ########################################
 
-bodyparts = ["hand", "Finger1", "Finger2",
-             "Joystick"]  # Exact sequence of labels as were put by
+bodyparts = ['paw1', 'paw2', 'paw3', 'paw4', 'gen', 'tailBase', 'tailMid', 'paw1LH', 'paw2LF', 'paw3RF', 'paw4RH', 'tailBaseTop', 'tailMidTop']  # Exact sequence of labels as were put by
 
 # annotator in *.csv file
-Scorers = ['Mackenzie']  # who is labeling?
+Scorers = ['']  # who is labeling?
 
 # When importing the images and the labels in the csv/xls files should be in the same order!
 # During labeling in Fiji one can thus (for occluded body parts) click in the origin of the image 
