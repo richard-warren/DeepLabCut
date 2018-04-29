@@ -6,7 +6,8 @@
 ############################
 
 # Filename and path to behavioral video (for labeling)
-videofolder = 'C:/Users/rick/Desktop/testVideos/run/'
+# videofolder = 'C:/Users/rick/Desktop/testVideos/run/'
+videofolder = 'Videos/'
 cropping = False
 
 playBackSpeed = .1

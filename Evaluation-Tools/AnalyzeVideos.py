@@ -162,15 +162,17 @@ for video in videos:
         metadata = {'data': dictionary}
 
         print("Saving results...")
-        # ipdb.set_trace()
         DataMachine = pd.DataFrame(
             PredicteData, columns=pdindex, index=range(nframes))
-        DataMachine.to_hdf(
-            dataname, 'df_with_missing', format='table', mode='w')
-        with open(dataname.split('.')[0] + 'includingmetadata.pickle',
-                  'wb') as f:
-            pickle.dump(metadata, f, pickle.HIGHEST_PROTOCOL)
+        # DataMachine.to_hdf(
+        #     dataname, 'df_with_missing', format='table', mode='w')
+        # with open(dataname.split('.')[0] + 'includingmetadata.pickle',
+        #           'wb') as f:
+        #     pickle.dump(metadata, f, pickle.HIGHEST_PROTOCOL)
         DataMachine.columns = DataMachine.columns.get_level_values(1) # remove all but one header to make matlab's readtable work better
-        DataMachine.to_csv(
-            dataname.split('.')[0] + '.csv')
+        DataMachine.to_csv('trackedFeaturesRaw.csv')
+        
+        # python crashes in windows if I do not add the following lines
+        del clip.reader
+        del clip
 
