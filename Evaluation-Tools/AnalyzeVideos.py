@@ -46,6 +46,7 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
+import ipdb
 
 
 def getpose(image, cfg, outputs, outall=False):
@@ -161,6 +162,7 @@ for video in videos:
         metadata = {'data': dictionary}
 
         print("Saving results...")
+        # ipdb.set_trace()
         DataMachine = pd.DataFrame(
             PredicteData, columns=pdindex, index=range(nframes))
         DataMachine.to_hdf(
@@ -168,3 +170,7 @@ for video in videos:
         with open(dataname.split('.')[0] + 'includingmetadata.pickle',
                   'wb') as f:
             pickle.dump(metadata, f, pickle.HIGHEST_PROTOCOL)
+        DataMachine.columns = DataMachine.columns.get_level_values(1) # remove all but one header to make matlab's readtable work better
+        DataMachine.to_csv(
+            dataname.split('.')[0] + '.csv')
+

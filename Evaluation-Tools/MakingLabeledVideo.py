@@ -34,7 +34,7 @@ import os
 import glob
 import auxiliaryfunctions
 from myconfig_analysis import videofolder, cropping, scorer, Task, date, \
-    resnet, shuffle, trainingsiterations, pcutoff, deleteindividualframes,x1, x2, y1, y2
+    resnet, shuffle, trainingsiterations, pcutoff, deleteindividualframes,x1, x2, y1, y2, playBackSpeed
 
 # loading meta data / i.e. training & test files
 basefolder = '../pose-tensorflow/models/'
@@ -126,7 +126,7 @@ for video in videos:
                             Dataframe[scorer][bp]['x'].values[index],
                             Dataframe[scorer][bp]['y'].values[index],
                             color=colors(bpindex),
-                            alpha=.2)
+                            alpha=.8)
 
                 plt.xlim(0, w)
                 plt.ylim(0, h)
@@ -143,7 +143,7 @@ for video in videos:
         print("Generating video")
         subprocess.call([
             'ffmpeg', '-framerate',
-            str(clip.fps), '-i', 'file%04d.png', '-r', '30', vname + '.mp4'
+            str(round(clip.fps*playBackSpeed)), '-i', 'file%04d.png', '-r', str(round(clip.fps*playBackSpeed)), vname + '.mp4'
         ])
         if deleteindividualframes:
             for file_name in glob.glob("*.png"):

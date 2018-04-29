@@ -6,8 +6,10 @@
 ############################
 
 # Filename and path to behavioral video (for labeling)
-videofolder = '../videos/'
+videofolder = 'C:/Users/rick/Desktop/testVideos/run/'
 cropping = False
+
+playBackSpeed = .1
 
 # ROI dimensions / bounding box (only used if cropping == True)
 # x1,y1 indicates the top left corner and
@@ -29,7 +31,7 @@ snapshotindex = -1
 shuffle = 1
 
 # For plotting:
-trainingsiterations = 750000  # type the number listed in .pickle file
-pcutoff = 0.95  # likelihood cutoff for body part in image
+trainingsiterations = 1030000  # type the number listed in .pickle file
+pcutoff = 0.99  # likelihood cutoff for body part in image
 # delete individual (labeled) frames after making video?
-deleteindividualframes = False
+deleteindividualframes = True
