@@ -1,0 +1,95 @@
+180122_000
+matlab count............................ 189567
+moviepy count........................... 189568
+amount predicted by duration............ 189568
+amount predicted by rounded duration.... 189568
+
+180122_001
+matlab count............................ 216140
+moviepy count........................... 216140
+amount predicted by duration............ 216141
+amount predicted by rounded duration.... 216141
+
+180122_002
+matlab count............................ 197069
+moviepy count........................... 197070
+amount predicted by duration............ 197070
+amount predicted by rounded duration.... 197071
+
+180122_003
+matlab count............................ 299809
+moviepy count........................... 299810
+amount predicted by duration............ 299810
+amount predicted by rounded duration.... 299811
+
+180123_000
+matlab count............................ 227792
+moviepy count........................... 227793
+amount predicted by duration............ 227793
+amount predicted by rounded duration.... 227793
+
+180123_001
+matlab count............................ 242080
+moviepy count........................... 242080
+amount predicted by duration............ 242081
+amount predicted by rounded duration.... 242081
+
+180123_002
+matlab count............................ 241194
+moviepy count........................... 241195
+amount predicted by duration............ 241195
+amount predicted by rounded duration.... 241196
+
+180123_003
+matlab count............................ 251183
+moviepy count........................... 251183
+amount predicted by duration............ 251184
+amount predicted by rounded duration.... 251183
+
+180124_000
+matlab count............................ 241346
+moviepy count........................... 241345
+amount predicted by duration............ 241347
+amount predicted by rounded duration.... 241346
+
+180124_001
+matlab count............................ 125647
+moviepy count........................... 125648
+amount predicted by duration............ 125648
+amount predicted by rounded duration.... 125648
+
+180124_002
+matlab count............................ 211958
+moviepy count........................... 211958
+amount predicted by duration............ 211959
+amount predicted by rounded duration.... 211958
+
+180124_003
+matlab count............................ 232828
+moviepy count........................... 232828
+amount predicted by duration............ 232829
+amount predicted by rounded duration.... 232828
+
+180125_000
+matlab count............................ 218542
+moviepy count........................... 218543
+amount predicted by duration............ 218543
+amount predicted by rounded duration.... 218543
+
+180125_001
+matlab count............................ 162529
+moviepy count........................... 162530
+amount predicted by duration............ 162530
+amount predicted by rounded duration.... 162531
+
+180125_002
+matlab count............................ 209782
+moviepy count........................... 209783
+amount predicted by duration............ 209783
+amount predicted by rounded duration.... 209783
+
+180125_003
+matlab count............................ 232378
+moviepy count........................... 232378
+amount predicted by duration............ 232379
+amount predicted by rounded duration.... 232378

@@ -25,7 +25,7 @@ sys.path.append(subfolder + "pose-tensorflow/")
 sys.path.append(subfolder + "Generating_a_Training_Set")
 
 from myconfig_analysis import videofolder, cropping, Task, date, \
-    trainingsFraction, resnet, snapshotindex, shuffle,x1, x2, y1, y2
+    trainingsFraction, resnet, snapshotindex, shuffle,x1, x2, y1, y2, extra_frames
 
 # Deep-cut dependencies
 from config import load_config
@@ -126,26 +126,35 @@ for video in videos:
         clip = VideoFileClip(video)
         ny, nx = clip.size  # dimensions of frame (height, width)
         fps = clip.fps
-        nframes = np.sum(1 for j in clip.iter_frames())
+        nframes_approx = round(clip.duration * clip.fps) + extra_frames
 
         if cropping:
             clip = clip.crop(
                 y1=y1, y2=y2, x1=x1, x2=x2)  # one might want to adjust
 
         print("Duration of video [s]: ", clip.duration, ", recorded with ", fps,
-              "fps!")
-        print("Overall # of frames: ", nframes,
+              "fps")
+        print("Approximate # of frames: ", nframes_approx-extra_frames,
               "with cropped frame dimensions: ", clip.size)
 
         start = time.time()
-        PredicteData = np.zeros((nframes, 3 * len(cfg['all_joints_names'])))
+        PredicteData = np.zeros((nframes_approx, 3 * len(cfg['all_joints_names'])))
 
         print("Starting to extract posture")
-        for index in tqdm(range(nframes)):
-            image = img_as_ubyte(clip.get_frame(index * 1. / fps))
-            pose = getpose(image, cfg, outputs)
-            PredicteData[index, :] = pose.flatten(
-            )  # NOTE: thereby cfg['all_joints_names'] should be same order as bodyparts!
+        
+
+        clip.reader.initialize(0) # reset time to zero... not sure this is necessary
+        for counter in tqdm(range(0,nframes_approx)):
+            image = clip.reader.read_frame()
+            if len(image)==0: # image=[] when the video reaches the end
+                nframes = counter
+                PredicteData = PredicteData[0:nframes,:]
+                break
+            else:
+                image = img_as_ubyte(image)
+                pose = getpose(image, cfg, outputs)
+                PredicteData[counter, :] = pose.flatten()  # NOTE: thereby cfg['all_joints_names'] should be same order as bodyparts!
+        print('detected frames: ', nframes)
 
         stop = time.time()
 

@@ -11,6 +11,7 @@ videofolder = 'Videos/'
 cropping = False
 
 playBackSpeed = .1
+extra_frames = 5 # when reading video, assume this many more frames that expected to avoid missing frames
 
 # ROI dimensions / bounding box (only used if cropping == True)
 # x1,y1 indicates the top left corner and
@@ -24,7 +25,7 @@ y2 = 624
 # Analysis Network parameters:
 
 scorer = ''
-Task = 'run'
+Task = 'run4'
 date = ''
 trainingsFraction = 0.95  # Fraction of labeled images used for training
 resnet = 50
@@ -32,7 +33,7 @@ snapshotindex = -1
 shuffle = 1
 
 # For plotting:
-trainingsiterations = 1030000  # type the number listed in .pickle file
+trainingsiterations = 450000  # type the number listed in .pickle file
 pcutoff = 0.99  # likelihood cutoff for body part in image
 # delete individual (labeled) frames after making video?
 deleteindividualframes = True

@@ -9,7 +9,7 @@
 
 ########################################
 # Step 1:
-Task = 'run'
+Task = 'run4lowres'
 ########################################
 
 # Filename and path to behavioral video:
@@ -35,7 +35,8 @@ portion = 1
 # Step 2:
 ########################################
 
-bodyparts = ['paw1', 'paw2', 'paw3', 'paw4', 'gen', 'tailBase', 'tailMid', 'paw1LH', 'paw2LF', 'paw3RF', 'paw4RH', 'tailBaseTop', 'tailMidTop']
+# bodyparts = ['paw1', 'paw2', 'paw3', 'paw4', 'gen', 'tailBase', 'tailMid', 'paw1LH', 'paw2LF', 'paw3RF', 'paw4RH', 'tailBaseTop', 'tailMidTop']
+bodyparts = ['paw1LH_top', 'paw2LF_top', 'paw3RF_top', 'paw4RH_top', 'tailBase_top', 'tailMid_top', 'nose_top', 'obs_top', 'paw1LH_bot', 'paw2LF_bot', 'paw3RF_bot', 'paw4RH_bot', 'tailBase_bot', 'tailMid_bot', 'nose_bot', 'obsHigh_bot', 'obsLow_bot']
 
 # annotator in *.csv file
 Scorers = ['']  # who is labeling?
