@@ -1,5 +1,5 @@
 import numpy as np
-
+import ipdb
 import tensorflow as tf
 
 from nnet.net_factory import pose_net
@@ -28,20 +28,23 @@ def setup_pose_prediction(cfg):
 
 def extract_cnn_output(outputs_np, cfg):
     scmap = outputs_np[0]
-    scmap = np.squeeze(scmap)
+    # scmap = np.squeeze(scmap)
     locref = None
     if cfg.location_refinement:
-        locref = np.squeeze(outputs_np[1])
-        shape = locref.shape
-        locref = np.reshape(locref, (shape[0], shape[1], -1, 2))
+        locref = outputs_np[1]
+        # locref = np.squeeze(outputs_np[1])
+        # shape = locref.shape
+        # locref = np.reshape(locref, (shape[0], shape[1], -1, 2))
         locref *= cfg.locref_stdev
     return scmap, locref
 
 
 def argmax_pose_predict(scmap, offmat, stride):
     """Combine scoremat and offsets to the final pose."""
-    num_joints = scmap.shape[2]
+    
+    num_joints = scmap.shape[-1]
     pose = []
+    
     for joint_idx in range(num_joints):
         maxloc = np.unravel_index(np.argmax(scmap[:, :, joint_idx]),
                                   scmap[:, :, joint_idx].shape)

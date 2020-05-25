@@ -27,6 +27,6 @@ cfg.crop_pad = 0
 cfg.scoremap_dir = "test"
 cfg.dataset_type = "default"
 cfg.use_gt_segm = False
-cfg.batch_size = 1
+cfg.batch_size = 32 # !!! how to set this programatically?
 cfg.video = False
 cfg.video_batch = False

@@ -17,7 +17,7 @@ sys.path.append(os.getcwd().split('Generating_a_Training_Set')[0])
 
 import matplotlib
 matplotlib.use('Agg')
-from myconfig import Task, filename, bodyparts, Scorers
+from myconfig import Task, filename, bodyparts, Scorers, scale, msize, alphavalue, imagetype, colormap
 from myconfig import scorer as cfg_scorer
 import numpy as np
 import pandas as pd
@@ -31,10 +31,6 @@ import matplotlib.pyplot as plt
 
 Labels = ['.', '+', '*']  # order of labels for different scorers
 
-Colorscheme = ['r', 'g', 'y', 'b', 'm', 'r', 'g', 'y',
-               'b']  # colors for those bodyparts.
-unvisibleboundary = 100  # see metadata / when bodypart not visible!
-
 #############################################
 # Make sure you update the train.yaml file!
 #############################################
@@ -42,6 +38,15 @@ unvisibleboundary = 100  # see metadata / when bodypart not visible!
 num_joints = len(bodyparts)
 all_joints = map(lambda j: [j], range(num_joints))
 all_joints_names = bodyparts
+
+
+# https://stackoverflow.com/questions/14720331/how-to-generate-random-colors-in-matplotlib
+def get_cmap(n, name=colormap):
+    '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct
+    RGB color; the keyword argument name must be a standard mpl colormap name.'''
+    return plt.cm.get_cmap(name, n)
+
+Colorscheme = get_cmap(len(bodyparts))
 
 print(num_joints)
 print(all_joints)
@@ -62,14 +67,11 @@ DataCombined = pd.read_hdf(
 # Make list of different video data sets:
 folders = [
     videodatasets for videodatasets in os.listdir(os.curdir)
-    if os.path.isdir(videodatasets) and
-    filename.split('.')[0] in videodatasets and 'labeled' not in videodatasets
+    if os.path.isdir(videodatasets) and 'labeled' not in videodatasets
 ]
 
 print(folders)
 # videos=np.sort([fn for fn in os.listdir(os.curdir) if ("avi" in fn)])
-scale = 1  # for plotting
-msize=25   #size of labels
 
 for folder in folders:
     tmpfolder = folder + 'labeled'
@@ -81,17 +83,21 @@ for folder in folders:
     # sort image file names according to how they were stacked (when labeled in Fiji)
     files = [
         fn for fn in os.listdir(os.curdir)
-        if ("img" in fn and ".png" in fn and "_labelled" not in fn)
+        if ("img" in fn and ".png" in fn and "_labeled" not in fn)
     ]
     files.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
 
-    comparisonbodyparts = list(set(DataCombined.columns.get_level_values(1)))
+    comparisonbodyparts = bodyparts #list(set(DataCombined.columns.get_level_values(1)))
 
     for index, imagename in enumerate(files):
         image = io.imread(imagename)
         plt.axis('off')
 
-        h, w, nc = np.shape(image)
+        if np.ndim(image)==2:
+            h, w = np.shape(image)
+        else:
+            h, w, nc = np.shape(image)
+
         plt.figure(
             frameon=False, figsize=(w * 1. / 100 * scale, h * 1. / 100 * scale))
         plt.subplots_adjust(
@@ -110,8 +116,8 @@ for folder in folders:
                     DataCombined[scorer][bp]['x'].values[imindex],
                     DataCombined[scorer][bp]['y'].values[imindex],
                     Labels[cc],
-                    color=Colorscheme[c],
-                    alpha=.5,
+                    color=Colorscheme(c),
+                    alpha=alphavalue,
                     ms=msize)
 
         plt.xlim(0, w)
